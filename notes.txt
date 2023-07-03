@@ -65,3 +65,9 @@ step 4:
         open "urls.py"
 
 -------------------------------------------------------
+
+build a docker image :
+-> docker build -t drinks_api .
+
+run the docker :
+-> docker run -p 8000:8000 drinks_api
