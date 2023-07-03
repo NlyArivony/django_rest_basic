@@ -20,8 +20,18 @@ from django.urls import path
 # import the views.py
 from drinks_api import views
 
+# urlpatterns = [
+#     path("admin/", admin.site.urls),
+#     path("drinks/", views.drink_list),
+#     path("drinks/<int:id>", views.drink_detail),
+# ]
+
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="docs"),
     path("drinks/", views.drink_list),
     path("drinks/<int:id>", views.drink_detail),
 ]

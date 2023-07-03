@@ -5,7 +5,14 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 
+# swagger ui
+from drf_spectacular.utils import extend_schema
 
+
+@extend_schema(
+    description="- Get all the drinks\n" "- Serialize them\n" "- Return JSON",
+    responses={200: DrinkSerializer(many=True)},
+)
 @api_view(["GET", "POST"])
 def drink_list(request):
     """
@@ -26,6 +33,10 @@ def drink_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+@extend_schema(
+    description="Get a drink\n" "Update a drink\n" "Delete a drink",
+    responses={200: DrinkSerializer()},
+)
 @api_view(["GET", "PUT", "DELETE"])
 def drink_detail(request, id):
     """
