@@ -1,0 +1,67 @@
+django REST framework DRF
+create virtual env:
+-> py -m venv env
+
+-install django
+    -> pip install django
+
+-install django rest framework:
+    -> pip install djangorestframework
+
+-commande import:
+    -> django-admin
+
+-start project
+    -> django-admin startproject drinks_api . (this will create the project drinks_api and a file manage.py)
+
+    -run project :
+        -> python manage.py runserver
+
+    -apply default migration:
+        -> python manage.py migrate
+
+
+    - django admin dashboard to manage db table :
+        - create user :
+            -> python manage.py createsuperuser (example: admin, psw:1234)
+
+        http://localhost:8000/admin
+
+
+- create custom models:
+    at the root of drinks_api:
+        create a file "models.py"
+
+- to create a table with the added model create a migrations:
+    -> python manage.py makemigrations {name_of_app}
+        example : -> python manage.py makemigrations drinks_api
+
+       ****make sure to add "drinks_api" to the list of INSTALLED_APPS in settings.py****
+
+
+- apply migration to database:
+    -> python manage.py migrate
+
+- to show the table to admin page:
+    create a file "admin.py" inside "drinks_api"
+
+
+---------------------------------------------------
+HOW TO GET DATA THROUGH THE API
+
+step 1 :
+    add "rest_framework" to the "INSTALLED_APPS" in settings.py
+
+step 2:
+    create a file named "serializer.py" (describe the process going from a python obj to json)
+
+step 3:
+    create all endpoints (a certain urls to access data from) :
+        inside drinks_api:
+            create "views.py"
+
+step 4:
+    define what url is gonna hit the view "drink_list" :
+        open "urls.py"
+
+-------------------------------------------------------
